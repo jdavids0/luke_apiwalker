@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
+import Card from './components/Card'
+import Form from './components/Form'
+import Error from './components/Error'
 
+// think of Route as a URL listener, changing URL based on an event
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container">
+      <BrowserRouter>
+        <Form />
+        <Switch>
+          <Route exact path='/card/:resource/:id'>
+            <Card />
+          </Route>
+          <Route exact path='/error'>
+            <Error />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
